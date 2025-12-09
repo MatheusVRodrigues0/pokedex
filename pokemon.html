@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Pokemon</title>
+</head>
+<body>
+  <div id="container">
+  
+    <div id="pagination">
+      <a href="#" id="pagination-previous">Anterior</a>
+      <a href="#" id="pagination-next">Sucessor</a>
+    </div>
+    
+
+    <div id="details">
+      <div id="details-identifier">
+        <p id="details-identifier-name"></p>
+        <p id="details-identifier-id"></p>
+      </div>
+
+      <div id="details-img">
+        <select name="versions" id="details-img-select">
+
+        </select>
+        <img id="details-img-image" alt="image of pokemon">
+      </div>
+
+      <div id="details-type">
+        <h2 id="details-type-text">Tipo</h2>
+
+        <ul id="details-type-itens">
+          
+        </ul>
+      </div>  
+      <ul id="details-evolutions">
+        <h2>Evoluções</h2>
+        <li class="midlle">
+          <a>
+            <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/001.png" alt="">
+            <h3>Bulbasaur</h3>
+            <ul id="details-evolutions-type">
+              <li class="style-type-grass">
+                <a>Planta</a>
+              </li>
+              <li class="style-type-poison">
+                <a>Poison</a>
+              </li>
+            </ul>
+          </a>
+        </li>
+        <li class="midlle">
+          <a>
+            <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/002.png" alt="">
+            <h3>Ivysaur</h3>
+            <ul id="details-evolutions-type">
+              <li class="style-type-grass">
+                <a>Planta</a>
+              </li>
+              <li class="style-type-poison">
+                <a>Poison</a>
+              </li>
+            </ul>
+          </a>
+        </li>
+        <li>
+          <a>
+            <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/003.png" alt="">
+            <h3>Venusaur</h3>
+            <ul id="details-evolutions-type">
+              <li class="style-type-grass">
+                <a>Planta</a>
+              </li>
+              <li class="style-type-poison">
+                <a>Poison</a>
+              </li>
+            </ul>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <script src="/script/script.js" type="module"></script>
+</body>
+</html>
