@@ -1,5 +1,6 @@
+import { getPokemonEvolution } from "./evolution-pokemon.js";
 
-async function requestApi(idPokemon){
+export async function requestApiPokemon(idPokemon){
   try{
 
     if(!idPokemon){
@@ -22,6 +23,19 @@ async function requestApi(idPokemon){
     console.error("Request error:", error);
   }
 
+}
+
+async function getPokemon(idPokemon){
+  const data = await requestApiPokemon(idPokemon);
+
+  const dataPokemon = {
+    id: data.id,
+    name: data.pokemon.name,
+    sprites: data.sprites,
+    types:  data.types
+  }
+
+  return dataPokemon;
 }
 
 function updateSelectOptions(sprites){
@@ -58,9 +72,13 @@ function updateTypes(types){
   }
 }
 
+function updateEvolution(){
+  
+}
+
 function updatePokemon(dataPokemon){
   const pokemonName = document.getElementById("details-identifier-name"); 
-  pokemonName.textContent = dataPokemon.pokemon.name;
+  pokemonName.textContent = dataPokemon.name;
   
   const pokemonId = document.getElementById("details-identifier-id");
   pokemonId.textContent = dataPokemon.id;
@@ -71,9 +89,11 @@ function updatePokemon(dataPokemon){
   pokemonImg.setAttribute("src", dataPokemon.sprites.front_default);
 
   updateTypes(dataPokemon.types);
+
+  updateEvolution(dataPokemon.evolution);
 }
 
-function updateElementsHtmlByPokemon(dataPokemon){
+function updateElementsHtmlByPokemon(dataPokemon, dataPokemonEvolution){
   const aPrevious = document.getElementById("pagination-previous");
   aPrevious.setAttribute("href", `pokemon.html?search=${dataPokemon.id - 1}`);
   
@@ -83,18 +103,20 @@ function updateElementsHtmlByPokemon(dataPokemon){
 
   
   updatePokemon(dataPokemon);
+
 }
 
 
-export async function getPokemon() {
+export async function getDataPokemon() {
   const params = new URLSearchParams(window.location.search);
 
   const idPokemon = params.get("search");
 
-  const dataPokemon = await requestApi(idPokemon);
+  const dataPokemon = await getPokemon(idPokemon);
+
+  dataPokemon.evolution = await getPokemonEvolution(idPokemon);
 
   updateElementsHtmlByPokemon(dataPokemon);
-
 }
 
 export function updateImage(event){

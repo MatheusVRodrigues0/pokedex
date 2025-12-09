@@ -1,6 +1,6 @@
-import { getPokemon, updateImage } from "./update-pokemon.js";
+import { getDataPokemon, updateImage } from "./update-pokemon.js";
 
-window.onload = getPokemon;
+window.onload = getDataPokemon;
 
 const selectImg = document.getElementById("details-img-select");
 
