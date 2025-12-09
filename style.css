@@ -11,6 +11,13 @@ ul {
   padding: 0;
   list-style: none;
 }
+
+a {
+  text-decoration: none;
+  color: #212121;
+}
+
+
 /* classes */
 .style-type-grass {
   background-color: #9bcc50;
@@ -172,14 +179,15 @@ ul {
  margin: 0;
 }
 
-#details-evolutions-type {
+#details-evolutions li a ul {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
+  width: 100%;
 }
 
-#details-evolutions-type li {
+#details-evolutions li a ul li {
   border-radius: 5px;
   padding: 1%;
 }

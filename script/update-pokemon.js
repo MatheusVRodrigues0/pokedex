@@ -67,13 +67,59 @@ function updateTypes(types){
 
     const a = document.createElement("a");
     a.setAttribute("href", `index.html?type=${type.type.name}`);
+    a.setAttribute("class", `style-type-${type.type.name}`);
     a.textContent = type.type.name;
     li.appendChild(a);
   }
 }
 
-function updateEvolution(){
+function updateEvolution(evolutions){
+  const ul = document.getElementById("details-evolutions");
   
+  let className = 'midlle';
+  let i = 1
+  for(const key in evolutions){
+    const evolution = evolutions[key];
+    if(i == evolutions.length){
+      className = '';
+    } 
+
+    const li = document.createElement('li');
+    li.setAttribute("class", className);
+    ul.appendChild(li);
+
+    const a = document.createElement("a");
+    a.setAttribute('href', `pokemon.html?search=${evolution.id}`);
+    li.appendChild(a);
+
+    const img = document.createElement("img");
+    img.setAttribute('src', evolution.sprite);
+    a.appendChild(img);
+
+    const h3 = document.createElement("h3");
+    h3.textContent = evolution.name;
+    a.appendChild(h3);
+
+    const ulTypes = document.createElement("ul");
+    // ulTypes.setAttribute("id", "details-evolutions-type");
+    a.appendChild(ulTypes);
+
+
+    for(const type of evolution.types){
+      const liType = document.createElement('li');
+      liType.setAttribute("class", `style-type-${type.type.name}`);
+      ulTypes.appendChild(liType);
+
+      const aType = document.createElement("a");
+      aType.setAttribute("href", `index.html?type=${type.type.name}`);
+      aType.setAttribute("class", `style-type-${type.type.name}`);
+      aType.textContent = type.type.name;
+      liType.appendChild(aType);
+    }
+
+
+    i++;
+  }
 }
 
 function updatePokemon(dataPokemon){
