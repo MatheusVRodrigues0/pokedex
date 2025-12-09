@@ -51,6 +51,9 @@ function updateSelectOptions(sprites){
     const option = document.createElement("option");
     option.value = sprite;
     option.textContent = key;
+    if(key === "front_default"){
+      option.selected = true;
+    }
     select.appendChild(option);
 
   }
