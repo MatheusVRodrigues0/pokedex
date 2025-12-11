@@ -65,7 +65,7 @@ function updateTypes(types){
 
   for(const type of types){
     const li = document.createElement("li");
-    li.setAttribute("class", `style-type-${type.type.name}`);
+    li.className = `pokemon-types-type style-type-${type.type.name}`;
     ul.appendChild(li);
 
     const a = document.createElement("a");
@@ -136,6 +136,7 @@ function updatePokemon(dataPokemon){
   
   const pokemonImg = document.getElementById("details-img-image");
   pokemonImg.setAttribute("src", dataPokemon.sprites.front_default);
+  pokemonImg.className = "pokemon-img";
 
   updateTypes(dataPokemon.types);
 

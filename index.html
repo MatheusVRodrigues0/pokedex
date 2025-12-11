@@ -3,12 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
   <title>Index</title>
 </head>
 <body>
-  <form action="pokemon.html" method="get">
-    <input type="text" name="search" id="search">
-    <input type="submit" name="" id="">
-  </form>
+  <div id="container">
+    <div id="details">
+      <div id="details-forms">    
+        <form action="pokemon.html" method="get">
+          <h3>Search name or id</h3>
+          <input type="text" name="search" id="search">
+          <input type="submit" name="" id="">
+        </form>
+
+        <form action="pokemon.html" method="get">
+          <h3>Search type</h3>
+          <input type="text" name="type" id="type">
+          <input type="submit" name="" id="">
+        </form>
+      </div>
+
+      <div id="show">
+
+        <div id="show-pokemon">
+          <a href="pokemon.html?search=2">
+            <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/001.png" alt="Imagem Pokemon" class="pokemon-img">
+            <p class="pokemon-id">Nº0001</p>
+            <h3 class="pokemon-name">Bulbasaur</h3>
+          </a>
+          <ul class="pokemon-types">
+            <li class="pokemon-types-type style-type-grass">
+              <a href="index.html?type=flying">Planta</a>
+            </li>
+            <li class="pokemon-types-type style-type-poison">
+              <a href="index.html?type=flying">Poison</a>
+            </li>
+            
+          </ul>
+        </div>
+
+
+      
+
+    </div>
+  </div>
 </body>
 </html>

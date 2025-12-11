@@ -1,9 +1,13 @@
 import { getDataPokemon, updateImage } from "./update-pokemon.js";
 
-window.onload = getDataPokemon;
+window.onload = function(){
+  
+  getDataPokemon();
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('container').style.display = 'block'; 
+};
 
 const selectImg = document.getElementById("details-img-select");
 
 selectImg.addEventListener("change", updateImage);
-
-//evolutions https://pokeapi.co/api/v2/pokemon-species/

@@ -14,23 +14,30 @@ ul {
 
 a {
   text-decoration: none;
-  color: #212121;
+  color: inherit;
 }
 
+p{
+  margin: 0;
+  padding: 0;
+}
 
 /* classes */
-.style-type-grass {
+.style-type-grass{
   background-color: #9bcc50;
   color: #212121;
 }
+
 .style-type-fire {
   background-color: #fd7d24;
   color: #fff;
 }
+
 .style-type-poison {
   background-color: #b97fc9;
   color: #fff;
 }
+
 .style-type-ice {
   background-color: #51c4e7;
   color: #212121;
@@ -39,9 +46,105 @@ a {
   background-color: #f366b9;
   color: #fff;
 }
+.style-type-normal {
+  background-color: #aa9;
+  color: #212121;
+}
+.style-type-water {
+  background-color: #39f;
+  color: #fff;
+}
+.style-type-electric {
+  background-color: #fc3;
+  color: #fff;
+}
+.style-type-fighting {
+  background-color: #b54;
+  color: #fff;
+}
+.style-type-ground {
+  background-color: #db5;
+  color: #fff;
+}
+.style-type-bug {
+  background-color: #ab2;
+  color: #fff;
+}
+.style-type-rock {
+  background-color: #ba6;
+  color: #fff;
+}
+.style-type-ghost {
+  background-color: #66b;
+  color: #fff;
+}
+.style-type-dragon {
+  background-color: #76e;
+  color: #fff;
+}
+.style-type-dark {
+  background-color: #754;
+  color: #fff;
+}
+.style-type-steel {
+  background-color: #aab;
+  color: #fff;
+}
+.style-type-fairy {
+  background-color: #e9e;
+  color: #fff;
+}
 .style-type-flying {
   background: linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
   color: #212121;
+}
+
+.pokemon-id {
+  color: #616161;
+}
+
+.pokemon-name {
+  color: #212121;
+}
+
+.pokemon-img {
+  width: 100%;
+  background: rgb(232, 231, 231);
+  border-radius: 2%;
+}
+
+.pokemon-types {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.pokemon-types-type {
+  flex: 0 0 30%;
+  border-radius: 5px;
+  padding: 1%;
+  
+}
+
+.pokemon-types-type a {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  list-style: none;
+}
+
+#loading {
+  display: none;
+  color:#fff;
+}
+
+#container {
+  /* display: none; */
+  max-width: 90%;
+
+  background:  url(http://assets.pokemon.com/static2/_ui/img/chrome/container_bg.png);
+  margin: 0 auto;
+  padding: 0 0 1%;
 }
 
 #pagination {
@@ -63,15 +166,6 @@ a {
   font-size: 150%;
 }
 
-#container {
-  max-width: 1280px;
-
-  background: #ffff url(http://assets.pokemon.com/static2/_ui/img/chrome/container_bg.png);
-  margin: 0 auto;
-  padding: 0 0 1%;
-
-}
-
 
 #details {
   background: white;
@@ -80,6 +174,37 @@ a {
   width: 70%;
   margin: 0 auto;
   padding: 0 5% 1%;
+}
+
+#details-forms {
+  display: flex;
+  background-color: #212121;
+
+  padding: 5%;
+  color: #fff;
+}
+
+#details-forms form {
+  width: 50%;
+}
+
+#details-forms form h3{
+  padding: 0;
+  margin: 0;
+}
+
+#show{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2%;
+  margin-top: 10px;
+  
+}
+
+#show-pokemon {
+  display: block;
+  flex: 1 1 auto;
 }
 
 #details-identifier {
@@ -91,11 +216,16 @@ a {
   font-size: 225%;
 }
 
-#details-identifier-name{
-  color: #212121;
+#details-pokemon {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.5%;
+  margin: 1em 0;
 }
-#details-identifier-id {
-  color: #616161;
+
+#details-pokemon-together {
+  flex: 1 1 auto;
 }
 
 #details-img{
@@ -123,30 +253,14 @@ a {
   border-radius: 5px;
 }
 
-#details-img img{
-  width: 100%;
-  background: rgb(232, 231, 231);
-  border-radius: 2%;
+#details-type {
+  flex: 1 1 auto;
+  order: 3;
 }
 
-#details-type-itens {
-  display: flex;
-  justify-content: flex-start;
-  gap: 10px;
-}
-
-#details-type-itens li{
-  flex: 0 0 30%;
-  border-radius: 5px;
-  padding: 1%;
-}
 
 #details-type-itens li a{
-  display: inline-block;
-  width: 100%;
-  text-align: center;
   font-size: large;
-  list-style: none;
 }
 
 #details-evolutions {
@@ -154,6 +268,10 @@ a {
   background: url(https://assets.pokemon.com/static2/_ui/img/chrome/body_gray_bg.png);
   border-radius: 5px;
   padding: 0.5em 1em;
+  margin: 0;
+
+  flex: 1 1 auto;
+  order: 2;
 }
 
 #details-evolutions li{
@@ -176,7 +294,7 @@ a {
   width: 110px;
 }
 #details-evolutions li a h2{
- margin: 0;
+ color: #212121;
 }
 
 #details-evolutions li a ul {
@@ -200,4 +318,31 @@ a {
   color: white;
   margin: 10px auto;
   text-align: center;
+}
+
+
+@media (max-width:1600px) {
+  #container {
+    max-width: 100%;
+  }
+
+}
+
+@media (max-width:960px) {
+  #details-pokemon {
+   display: block; 
+  }
+}
+
+
+@media (max-width:580px){
+  #details-forms{
+    flex-direction: column;
+  }
+
+  #details-forms form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
