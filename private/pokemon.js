@@ -1,4 +1,4 @@
-import { getDataPokemon, updateImage } from "./update-pokemon.js";
+import { getDataPokemon, updateImage } from "../script/update-pokemon.js";
 
 window.onload = function(){
   
