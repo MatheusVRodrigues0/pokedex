@@ -17,6 +17,7 @@ async function requestApi(searchApi){
   }  
 }
 
+
 export async function getPokemons(){
   const params = new URLSearchParams(window.location.search);
   const typePokemon = params.get("type");

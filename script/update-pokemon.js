@@ -2,11 +2,6 @@ import { getPokemonEvolution } from "./evolution-pokemon.js";
 
 export async function requestApiPokemon(idPokemon){
   try{
-
-    if(!idPokemon){
-      throw new Error("Id or Name invalid");
-    }
-
     const answer = await fetch(`https://pokeapi.co/api/v2/pokemon-form/${idPokemon}`)
 
     if(!answer.ok){
@@ -22,7 +17,6 @@ export async function requestApiPokemon(idPokemon){
   catch(error){
     console.error("Request error:", error);
   }
-
 }
 
 async function getPokemon(idPokemon){
