@@ -1,46 +1,7 @@
-import { requestApiPokemon } from "./update-pokemon.js";
+import { apiRequestPokemonEvolutionData } from "./api-request.js";
+import { getPokemonDataMin } from "./get-pokemon-data.js";
 
-async function requestApiEvolution(idPokemon){
-  try{
-    const answer = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${idPokemon}/`);
-
-    if(!answer.ok){
-      throw new Error("Error searching for Pokémon.");
-    }
-
-    const data = await answer.json();
-    
-    const answer1 = await fetch(data.evolution_chain.url); 
-
-    if(!answer1.ok){
-      throw new Error("Error searching for Pokémon.");
-    }
-
-    const dataEvolution = await answer1.json();
-
-    return dataEvolution;
-
-  }
-  catch{
-
-  }
-}
-
-export async function getPokemon(idPokemon){
-  const data = await requestApiPokemon(idPokemon);
-
-  const dataPokemon = {
-    id: data.id,
-    name: data.pokemon.name,
-    sprite: data.sprites.front_default,
-    types:  data.types
-  }
-
-  return dataPokemon;
-}
-
-
-async function getPokemons(dataEvolution){
+async function getPokemonsEvolutionData(dataEvolution){
   const dataPokemons = [];
 
   let i = 1;
@@ -57,7 +18,7 @@ async function getPokemons(dataEvolution){
       }
     }
     
-    dataPokemons[count] = await getPokemon(dataEvolution.species.name);
+    dataPokemons[count] = await getPokemonDataMin(dataEvolution.species.name);
     
     count++;
   }
@@ -65,9 +26,9 @@ async function getPokemons(dataEvolution){
 }
 
 export async function getPokemonEvolution(idPokemon){
-  const dataEvolution = await requestApiEvolution(idPokemon);
+  const dataEvolution = await apiRequestPokemonEvolutionData(idPokemon);
   
-  const dataPokemons = await getPokemons(dataEvolution.chain);
+  const dataPokemons = await getPokemonsEvolutionData(dataEvolution.chain);
 
   return dataPokemons;
 }

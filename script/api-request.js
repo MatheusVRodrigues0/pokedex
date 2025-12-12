@@ -1,4 +1,5 @@
-async function requestApiPokemon(idPokemon){
+
+export async function apiRequestPokemonData(idPokemon){
   try{
     const answer = await fetch(`https://pokeapi.co/api/v2/pokemon-form/${idPokemon}`)
 
@@ -19,7 +20,7 @@ async function requestApiPokemon(idPokemon){
 
 
 
-export async function apiRequestPokemonEvolution(idPokemon){
+export async function apiRequestPokemonEvolutionData(idPokemon){
   try{
     const answer = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${idPokemon}/`);
 
@@ -43,4 +44,42 @@ export async function apiRequestPokemonEvolution(idPokemon){
   catch{
 
   }
+}
+
+export async function apiRequestPokemonsDataBytype(type){
+  try{
+    const answer = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
+
+    if(!answer.ok){
+      throw new Error("Error searching for Pokémons.");
+    }
+
+    const data = await answer.json();
+	
+
+    return data;
+
+  }
+  catch(error){
+    console.error("Request error:", error);
+  }  
+}
+
+export async function apiRequestPokemonsData(offset = 0){
+  try{
+    const answer = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=12&offset=${offset}`);
+
+    if(!answer.ok){
+      throw new Error("Error searching for Pokémons.");
+    }
+
+    const data = await answer.json();
+	
+
+    return data;
+
+  }
+  catch(error){
+    console.error("Request error:", error);
+  }  
 }

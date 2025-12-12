@@ -1,36 +1,6 @@
-import { getPokemonEvolution } from "./evolution-pokemon.js";
+import { getPokemonEvolution } from "./evolution-pokemon-data.js";
+import { getPokemonDataAll } from "./get-pokemon-data.js";
 
-export async function requestApiPokemon(idPokemon){
-  try{
-    const answer = await fetch(`https://pokeapi.co/api/v2/pokemon-form/${idPokemon}`)
-
-    if(!answer.ok){
-      throw new Error("Error searching for Pokémon.");
-    }
-
-    const data = await answer.json();
-	
-
-    return data;
-
-  }
-  catch(error){
-    console.error("Request error:", error);
-  }
-}
-
-async function getPokemon(idPokemon){
-  const data = await requestApiPokemon(idPokemon);
-
-  const dataPokemon = {
-    id: data.id,
-    name: data.pokemon.name,
-    sprites: data.sprites,
-    types:  data.types
-  }
-
-  return dataPokemon;
-}
 
 function updateSelectOptions(sprites){
   const select = document.getElementById("details-img-select");
@@ -119,6 +89,7 @@ function updateEvolution(evolutions){
   }
 }
 
+
 function updatePokemon(dataPokemon){
   const pokemonName = document.getElementById("details-identifier-name"); 
   pokemonName.textContent = dataPokemon.name;
@@ -137,7 +108,8 @@ function updatePokemon(dataPokemon){
   updateEvolution(dataPokemon.evolution);
 }
 
-function updateElementsHtmlByPokemon(dataPokemon, dataPokemonEvolution){
+
+function updateElementsHtmlByPokemon(dataPokemon){
   const aPrevious = document.getElementById("pagination-previous");
   aPrevious.setAttribute("href", `pokemon.html?search=${dataPokemon.id - 1}`);
   
@@ -151,12 +123,11 @@ function updateElementsHtmlByPokemon(dataPokemon, dataPokemonEvolution){
 }
 
 
-export async function getDataPokemon() {
+export async function updatePokemonData() {
   const params = new URLSearchParams(window.location.search);
-
   const idPokemon = params.get("search");
 
-  const dataPokemon = await getPokemon(idPokemon);
+  const dataPokemon = await getPokemonDataAll(idPokemon);
 
   dataPokemon.evolution = await getPokemonEvolution(idPokemon);
 

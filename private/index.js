@@ -1,4 +1,3 @@
-import { getPokemons } from "../script/get-pokemons.js";
+import { updateIndexPokemonsData } from "../script/update-index.js";
 
-
-window.onload = getPokemons;
+window.onload = updateIndexPokemonsData;

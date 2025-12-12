@@ -204,7 +204,7 @@ p{
 
 #show-pokemon {
   display: block;
-  flex: 1 1 auto;
+  flex: 1 1 23.5%;
 }
 
 #details-identifier {
