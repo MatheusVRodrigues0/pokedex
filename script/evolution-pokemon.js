@@ -26,7 +26,7 @@ async function requestApiEvolution(idPokemon){
   }
 }
 
-async function getPokemon(idPokemon){
+export async function getPokemon(idPokemon){
   const data = await requestApiPokemon(idPokemon);
 
   const dataPokemon = {
