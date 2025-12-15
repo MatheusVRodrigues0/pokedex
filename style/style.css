@@ -133,13 +133,15 @@ p{
   list-style: none;
 }
 
-#loading {
+.none {
   display: none;
+}
+
+#loading {
   color:#fff;
 }
 
 #container {
-  /* display: none; */
   max-width: 90%;
 
   background:  url(http://assets.pokemon.com/static2/_ui/img/chrome/container_bg.png);

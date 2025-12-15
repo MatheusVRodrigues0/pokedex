@@ -1,11 +1,10 @@
+import { alterLoadingContainer } from "../script/crud-elements.js";
 import { updatePokemonData, updateImage } from "../script/update-pokemon.js";
 
-window.onload = function(){
-  
-  updatePokemonData();
+window.onload = async function(){
+  await updatePokemonData();
 
-  document.getElementById('loading').style.display = 'none';
-  document.getElementById('container').style.display = 'block'; 
+  alterLoadingContainer();
 };
 
 const selectImg = document.getElementById("details-img-select");
