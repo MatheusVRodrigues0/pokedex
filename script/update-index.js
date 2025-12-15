@@ -42,55 +42,89 @@ function stuctureShowPokemon(pokemonData){
 
 function updatePokemons(pokemonsData){
   const divShow = document.getElementById('show');
-  console.log(pokemonsData);
+  const buttonPokemonsMore = document.getElementById('pokemons-more-button')
   for (const pokemonData of pokemonsData) {
+    if(pokemonData.offset){
+      buttonPokemonsMore.value = `offset=${pokemonData.offset}&type=${pokemonData.type}`;
+      continue;
+    }
     const divShowPokemon = stuctureShowPokemon(pokemonData);
     divShow.appendChild(divShowPokemon);
   }
 
 }
 
-async function getPokemonsOffset(offset){
+function pokemonsDataNext(offset, type = 0) {
+  const nextData = {
+    offset: offset + 12,
+    type: type
+  }
+
+  return nextData;
+}
+
+async function getPokemonsOffset(offset = 0){
   const pokemons = await apiRequestPokemonsData(offset);
   const dataPokemon = [];
   
-  let i = 0;
+  let i = 1;
   for (const pokemon of pokemons.results) {
     dataPokemon[i] = await getPokemonDataMin(pokemon.name);
     i++
   }
 
+  dataPokemon[0] = pokemonsDataNext(offset);
+
   return dataPokemon;
 }
 
-async function getPokemonsByType(type){
+async function getPokemonsByType(type, offset = 0){
   const pokemons = await apiRequestPokemonsDataBytype(type);
   const dataPokemon = [];
   
-  let i = 0;
+  dataPokemon[0] = pokemonsDataNext(offset, type);
+  let i = 1;
   for (const pokemon of pokemons.pokemon) {
-    if (i === 12) {
+    if (i <= offset) {
+      i++
+      continue;
+    }
+    if (i === 13 + offset) {
       return dataPokemon;
     }
-    dataPokemon[i] = await getPokemonDataMin(pokemon.pokemon.name);
+    dataPokemon.push(await getPokemonDataMin(pokemon.pokemon.name));
     i++
   }
+
 }
 
 async function getPokemons(){
   const params = new URLSearchParams(window.location.search);
   const type = params.get("type");
-  
+
   if(type){
     return await getPokemonsByType(type);
   }
+  
+  return await getPokemonsOffset();
+}
 
-  const offset = 0;
+export async function insertIndexPokemonsData(){
+  const pokemonsData =  await getPokemons();
+
+  updatePokemons(pokemonsData);
+}
+
+async function getMorePokemons(offset, type){
+  if(type){
+    return await getPokemonsByType(type, offset);
+  }
+  
   return await getPokemonsOffset(offset);
 }
 
-export async function updateIndexPokemonsData(){
-  const pokemonsData =  await getPokemons();
+export async function updateIndexPokemonsData(offset, type){
+  const pokemonsData =  await getMorePokemons(offset, type);
 
   updatePokemons(pokemonsData);
 }
